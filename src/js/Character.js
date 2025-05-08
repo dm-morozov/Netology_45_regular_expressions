@@ -1,5 +1,5 @@
 // Character.js
-import Validator from './Validator';
+import Validator from "./Validator";
 
 export default class Character {
   constructor(name, type) {
