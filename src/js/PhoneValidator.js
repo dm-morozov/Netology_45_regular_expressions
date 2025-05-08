@@ -9,7 +9,7 @@ export default class PhoneValidator {
   }
 
   cleanPhoneNumber() {
-    // Удаляем все знака плюс и цифр
+    // Удаляем все кроме знака плюс и цифр
     const clearPhone = this.phone.replace(/[^\d+]/g, "");
 
     // Проверяем формат: начинается с + или 7/8 для России, или другой код
@@ -19,18 +19,18 @@ export default class PhoneValidator {
       throw new Error("Неверный формат номера телефона");
     }
 
-    const [, , numberPhone] = match;
-    let [, countryCode] = match;
+    const [, countryCode, numberPhone] = match;
+    let code = countryCode;
     // console.log(countryCode, numberPhone);
     if (countryCode === "+7" || countryCode === "8") {
-      countryCode = "+7";
+      code = "+7";
     }
 
-    if (!countryCode.startsWith("+")) {
-      countryCode = "+" + countryCode;
+    if (!code.startsWith("+")) {
+      code = "+" + code;
     }
 
-    return countryCode + numberPhone;
+    return code + numberPhone;
   }
 }
 
